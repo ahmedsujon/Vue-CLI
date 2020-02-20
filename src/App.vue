@@ -2,20 +2,35 @@
   <div id="app">
     <h2>{{ title }}</h2>
     <navbar></navbar>
+    <Allfriends :friends="friends"></Allfriends>
+    <Onlinefriend :friends="friends"></Onlinefriend>
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
+import Allfriends from "./components/Allfriends.vue";
+import Onlinefriend from "./components/Onlinefriend.vue";
+
 export default {
   name: "App",
   data() {
     return {
-      title: "Vue Basic Runing :)"
+      title: "Vue Basic Runing :)",
+      friends: [
+        { name: "A", online: true },
+        { name: "B", online: true },
+        { name: "C", online: true },
+        { name: "D", online: false },
+        { name: "E", online: true },
+        { name: "F", online: false }
+      ]
     };
   },
   components: {
-    Navbar
+    Navbar,
+    Allfriends,
+    Onlinefriend
   }
 };
 </script>

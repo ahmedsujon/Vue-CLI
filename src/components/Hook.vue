@@ -1,10 +1,12 @@
 <template>
   <div class="Hook">
     <h1>All Posts</h1>
-    <div v-for="post in posts" :key="post.id">
+    <input type="text" v-model="searchTerm" placeholder="search" />
+    <div v-for="post in filtersearch" :key="post.id">
       <h3>{{ post.id }}</h3>
       <h3>{{ post.title }}</h3>
       <p>{{ post.body | snippet }}</p>
+      <hr />
     </div>
   </div>
 </template>
@@ -15,9 +17,18 @@ export default {
   name: "Hook",
   data() {
     return {
-      posts: []
+      posts: [],
+      searchTerm: ""
     };
   },
+  computed: {
+    filtersearch() {
+      return this.posts.filter(post => {
+        return post.title.match(this.searchTerm);
+      });
+    }
+  },
+
   methods: {},
   created() {
     axios
